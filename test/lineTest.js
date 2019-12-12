@@ -10,12 +10,21 @@ describe("lineTest", function() {
     assert.strictEqual(actual, expected);
   });
 
-  it("should give true for equal object", function() {
+  it("should give true for two objects having same keys and values and also having made from same constructor", function() {
     const lineObj = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
     const otherLine = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
 
     const actual = lineObj.isEqual(otherLine);
     const expected = true;
+    assert.strictEqual(actual, expected);
+  });
+
+  it("should give false for two objects having made from same constructor but having different keys and values", function() {
+    const lineObj = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+    const otherLine = new Line({ x: 2, y: 2 }, { x: 4, y: 4 });
+
+    const actual = lineObj.isEqual(otherLine);
+    const expected = false;
     assert.strictEqual(actual, expected);
   });
 

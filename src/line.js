@@ -1,4 +1,3 @@
-// {start : {x,y}, end :{x,y}}
 class Line {
   constructor(start, end) {
     this.start = start;
