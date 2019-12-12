@@ -1,21 +1,20 @@
+// {start : {x,y}, end :{x,y}}
 class Line {
-  constructor(positionX1, positionY1, positionX2, positionY2) {
-    this.positionX1 = positionX1;
-    this.positionY1 = positionY1;
-    this.positionX2 = positionX2;
-    this.positionY2 = positionY2;
+  constructor(start, end) {
+    this.start = start;
+    this.end = end;
   }
 
   toString() {
-    return `Line (${this.positionX1}, ${this.positionY1}) to (${this.positionX2}, ${this.positionY2})`;
+    return `Line (${this.start.x}, ${this.start.y}) to (${this.end.x}, ${this.end.y})`;
   }
 
   areBothEqual(other) {
     return (
-      this.positionX1 === other.positionX1 &&
-      this.positionY1 === other.positionY1 &&
-      this.positionX2 === other.positionX2 &&
-      this.positionY2 === other.positionY2
+      this.start.x === other.start.x &&
+      this.start.y === other.start.y &&
+      this.end.x === other.end.x &&
+      this.end.y === other.end.y
     );
   }
 
