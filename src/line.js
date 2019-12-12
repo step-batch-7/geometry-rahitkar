@@ -7,7 +7,7 @@ class Line {
   }
 
   toString() {
-    return `{positionX1:${this.positionX1},positionY1:${this.positionY1},positionX2:${this.positionX2},positionY2:${this.positionY2}}`;
+    return `Line (${this.positionX1}, ${this.positionY1}) to (${this.positionX2}, ${this.positionY2})`;
   }
 
   isEqual(other) {
