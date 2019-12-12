@@ -10,12 +10,18 @@ class Line {
     return `Line (${this.positionX1}, ${this.positionY1}) to (${this.positionX2}, ${this.positionY2})`;
   }
 
-  isEqual(other) {
+  areBothEqual(other) {
     return (
       this.positionX1 === other.positionX1 &&
       this.positionY1 === other.positionY1 &&
       this.positionX2 === other.positionX2 &&
       this.positionY2 === other.positionY2
+    );
+  }
+
+  isEqual(other) {
+    return (
+      this.areBothEqual(other) && this instanceof Line && other instanceof Line
     );
   }
 }
