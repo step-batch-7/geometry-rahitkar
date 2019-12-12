@@ -1,13 +1,22 @@
 class Line {
-  constructor(coordinateX1, coordinateY1, coordinateX2, coordinateY2) {
-    this.coordinateX1 = coordinateX1;
-    this.coordinateY1 = coordinateY1;
-    this.coordinateX2 = coordinateX2;
-    this.coordinateY2 = coordinateY2;
+  constructor(positionX1, positionY1, positionX2, positionY2) {
+    this.positionX1 = positionX1;
+    this.positionY1 = positionY1;
+    this.positionX2 = positionX2;
+    this.positionY2 = positionY2;
   }
 
   toString() {
-    return `{coordinateX1:${this.coordinateX1},coordinateY1:${this.coordinateY1},coordinateX2:${this.coordinateX2},coordinateY2:${this.coordinateY2}}`;
+    return `{positionX1:${this.positionX1},positionY1:${this.positionY1},positionX2:${this.positionX2},positionY2:${this.positionY2}}`;
+  }
+
+  isEqual(other) {
+    return (
+      this.positionX1 === other.positionX1 &&
+      this.positionY1 === other.positionY1 &&
+      this.positionX2 === other.positionX2 &&
+      this.positionY2 === other.positionY2
+    );
   }
 }
 
