@@ -1,5 +1,5 @@
 const arePointsEqual = (pointA, pointB) => {
-  return pointA.x == pointB.x && pointA.y == pointB.y;
+  return pointA.x === pointB.x && pointA.y === pointB.y;
 };
 
 class Line {
@@ -26,6 +26,14 @@ class Line {
     return Math.sqrt(
       (this.start.x - this.end.x) ** 2 + (this.start.y - this.end.y) ** 2
     );
+  }
+
+  get slope() {
+    return (this.end.y - this.start.y) / (this.end.x - this.start.x);
+  }
+
+  parallel(other) {
+    return this.slope === other.slope;
   }
 }
 

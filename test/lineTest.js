@@ -54,17 +54,64 @@ describe("line", function() {
   });
 
   describe("length", function() {
-    it("should give the length of a line having two end points", function() {
+    it("should give the length of a line having two different end points", function() {
       const line = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       const actual = line.length;
       const expected = 2.8284271247461903;
       assert.strictEqual(actual, expected);
     });
 
-    it("should give zero for given input having end points of x,y as zero", function() {
-      const line = new Line({ x: 0, y: 0 }, { x: 0, y: 0 });
+    it("should give length zero for a point", function() {
+      const line = new Line({ x: 2, y: 2 }, { x: 2, y: 2 });
       const actual = line.length;
       const expected = 0;
+      assert.strictEqual(actual, expected);
+    });
+  });
+
+  describe("parallel", function() {
+    it("should give true for two parallel lines if there slopes are same", function() {
+      const line = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+      const otherLine = new Line({ x: 1, y: 3 }, { x: 4, y: 6 });
+      const actual = line.parallel(otherLine);
+      const expected = true;
+      assert.strictEqual(actual, expected);
+    });
+  });
+
+  describe("slope", function() {
+    it("should give the slope of a given line", function() {
+      const line = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+      const actual = line.slope;
+      const expected = 1;
+      assert.strictEqual(actual, expected);
+    });
+
+    it("should give slope zero for lines parallel to x-axis", function() {
+      const line = new Line({ x: 1, y: 2 }, { x: 3, y: 2 });
+      const actual = line.slope;
+      const expected = 0;
+      assert.strictEqual(actual, expected);
+    });
+
+    it("should give slope positive infinity for lines parallel to y-axis and having relative end point's ordinate greater then starting point's ordinate", function() {
+      const line = new Line({ x: 1, y: 2 }, { x: 1, y: 4 });
+      const actual = line.slope;
+      const expected = Infinity;
+      assert.strictEqual(actual, expected);
+    });
+
+    it("should give slope negative infinity for lines parallel to y-axis and having relative end point's ordinate lesser then starting point's ordinate", function() {
+      const line = new Line({ x: 1, y: 4 }, { x: 1, y: 2 });
+      const actual = line.slope;
+      const expected = -Infinity;
+      assert.strictEqual(actual, expected);
+    });
+
+    it("should give slope NaN for a point", function() {
+      const line = new Line({ x: 1, y: 2 }, { x: 1, y: 2 });
+      const actual = line.slope;
+      const expected = NaN;
       assert.strictEqual(actual, expected);
     });
   });
