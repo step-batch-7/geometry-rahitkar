@@ -1,42 +1,55 @@
 const assert = require("assert");
 const Line = require("../src/line");
 
-describe("lineTest", function() {
-  it("should give a string version of newly made object", function() {
-    const lineObj = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
-    const actual = lineObj.toString();
-    const expected = `Line (1, 2) to (3, 4)`;
+describe("line", function() {
+  describe("toString", function() {
+    it("should give a string version of newly made object", function() {
+      const lineObj = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+      const actual = lineObj.toString();
+      const expected = `Line (1, 2) to (3, 4)`;
 
-    assert.strictEqual(actual, expected);
-  });
-
-  it("should give true for two objects having same keys and values and also having made from same constructor", function() {
-    const lineObj = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
-    const otherLine = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
-
-    const actual = lineObj.isEqual(otherLine);
-    const expected = true;
-    assert.strictEqual(actual, expected);
-  });
-
-  it("should give false for two objects having made from same constructor but having different keys and values", function() {
-    const lineObj = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
-    const otherLine = new Line({ x: 2, y: 2 }, { x: 4, y: 4 });
-
-    const actual = lineObj.isEqual(otherLine);
-    const expected = false;
-    assert.strictEqual(actual, expected);
-  });
-
-  it("should give false for two objects having same keys and values but not made from same constructor", function() {
-    const lineObj = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
-
-    const actual = lineObj.isEqual({
-      start: { x: 1, y: 2 },
-      end: { x: 3, y: 4 }
+      assert.strictEqual(actual, expected);
     });
-    const expected = false;
+  });
 
-    assert.strictEqual(actual, expected);
+  describe("isEqualTo", function() {
+    it("should give true for two objects having same keys and values and also having made from same constructor", function() {
+      const lineObj = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+      const otherLine = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+
+      const actual = lineObj.isEqualTo(otherLine);
+      const expected = true;
+      assert.strictEqual(actual, expected);
+    });
+
+    it("should give false for two objects having made from same constructor but having different keys and values", function() {
+      const lineObj = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+      const otherLine = new Line({ x: 2, y: 2 }, { x: 4, y: 4 });
+
+      const actual = lineObj.isEqualTo(otherLine);
+      const expected = false;
+      assert.strictEqual(actual, expected);
+    });
+
+    it("should give false for two objects having same keys and values but not made from same constructor", function() {
+      const lineObj = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+
+      const actual = lineObj.isEqualTo({
+        start: { x: 1, y: 2 },
+        end: { x: 3, y: 4 }
+      });
+      const expected = false;
+
+      assert.strictEqual(actual, expected);
+    });
+
+    it("should give false for not having same fields and type", function() {
+      const lineObj = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+
+      const actual = lineObj.isEqualTo({});
+      const expected = false;
+
+      assert.strictEqual(actual, expected);
+    });
   });
 });

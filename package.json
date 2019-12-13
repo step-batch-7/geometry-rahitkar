@@ -7,17 +7,20 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "nyc mocha"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/step-batch-7/geometry-rahitkar.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "rahitKar",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/step-batch-7/geometry-rahitkar/issues"
   },
-  "homepage": "https://github.com/step-batch-7/geometry-rahitkar#readme"
+  "homepage": "https://github.com/step-batch-7/geometry-rahitkar#readme",
+  "devDependencies": {
+    "nyc": "^14.1.1"
+  }
 }
