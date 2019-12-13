@@ -70,11 +70,43 @@ describe("line", function() {
   });
 
   describe("parallel", function() {
-    it("should give true for two parallel lines if there slopes are same", function() {
+    it("should give true for two parallel lines having same slope", function() {
       const line = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       const otherLine = new Line({ x: 1, y: 3 }, { x: 4, y: 6 });
       const actual = line.parallel(otherLine);
       const expected = true;
+      assert.strictEqual(actual, expected);
+    });
+
+    it("should give false for non parallel lines having different slopes", function() {
+      const line = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+      const otherLine = new Line({ x: 1, y: 3 }, { x: 4, y: 4 });
+      const actual = line.parallel(otherLine);
+      const expected = false;
+      assert.strictEqual(actual, expected);
+    });
+
+    it("should give false for given same line", function() {
+      const line = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+      const otherLine = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+      const actual = line.parallel(otherLine);
+      const expected = false;
+      assert.strictEqual(actual, expected);
+    });
+
+    it("should give false for given two lines having one end coordinate same but other end different", function() {
+      const line = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+      const otherLine = new Line({ x: 1, y: 2 }, { x: 4, y: 4 });
+      const actual = line.parallel(otherLine);
+      const expected = false;
+      assert.strictEqual(actual, expected);
+    });
+
+    it("should give true for given two lines having same ordinates but different abscissas", function() {
+      const line = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+      const otherLine = new Line({ x: 1, y: 2 }, { x: 4, y: 4 });
+      const actual = line.parallel(otherLine);
+      const expected = false;
       assert.strictEqual(actual, expected);
     });
   });
