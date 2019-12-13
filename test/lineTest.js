@@ -102,11 +102,19 @@ describe("line", function() {
       assert.strictEqual(actual, expected);
     });
 
-    it("should give true for given two lines having same ordinates but different abscissas", function() {
-      const line = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
-      const otherLine = new Line({ x: 1, y: 2 }, { x: 4, y: 4 });
+    it("should give true for given two lines having all same ordinates but different abscissas", function() {
+      const line = new Line({ x: 1, y: 2 }, { x: 3, y: 2 });
+      const otherLine = new Line({ x: 1, y: 2 }, { x: 4, y: 2 });
       const actual = line.parallel(otherLine);
-      const expected = false;
+      const expected = true;
+      assert.strictEqual(actual, expected);
+    });
+
+    it("should give true for given two lines having all same abscissas but different ordinates", function() {
+      const line = new Line({ x: 1, y: 2 }, { x: 3, y: 2 });
+      const otherLine = new Line({ x: 1, y: 2 }, { x: 4, y: 2 });
+      const actual = line.parallel(otherLine);
+      const expected = true;
       assert.strictEqual(actual, expected);
     });
   });
