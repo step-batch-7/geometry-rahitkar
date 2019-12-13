@@ -2,6 +2,18 @@ const arePointsEqual = (pointA, pointB) => {
   return pointA.x === pointB.x && pointA.y === pointB.y;
 };
 
+const areOrdinatesEqual = (myLine, otherLine) => {
+  return (
+    myLine.start.y === otherLine.start.y && myLine.end.y === otherLine.end.y
+  );
+};
+
+const areAbscissasEqual = (myLine, otherLine) => {
+  return (
+    myLine.start.x === otherLine.start.x && myLine.end.x === otherLine.end.x
+  );
+};
+
 class Line {
   constructor(start, end) {
     this.start = { x: start.x, y: start.y };
@@ -33,7 +45,14 @@ class Line {
   }
 
   parallel(other) {
-    return !this.isEqualTo(other) && this.slope === other.slope;
+    if (this.isEqualTo(other)) {
+      return false;
+    }
+
+    return (
+      this.slope === other.slope &&
+      !(areOrdinatesEqual(this, other) || areAbscissasEqual(this, other))
+    );
   }
 }
 
