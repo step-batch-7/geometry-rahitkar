@@ -44,4 +44,13 @@ describe("point", () => {
       assert.strictEqual(actual, expected);
     });
   });
+
+  describe("clone", () => {
+    it("should give a copy of given point", () => {
+      const point = new Point(2, 4);
+      const actual = point.clone();
+      const expected = new Point(2, 4);
+      assert.deepStrictEqual(actual, expected);
+    });
+  });
 });
