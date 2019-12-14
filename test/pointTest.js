@@ -51,6 +51,7 @@ describe("point", () => {
       const actual = point.clone();
       const expected = new Point(2, 4);
       assert.deepStrictEqual(actual, expected);
+      assert.notStrictEqual(actual, expected);
     });
   });
 });

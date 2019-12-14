@@ -240,4 +240,16 @@ describe("line", () => {
       assert.strictEqual(actual, expected);
     });
   });
+
+  describe("split", () => {
+    it("should give a list of two line objects", () => {
+      const line = new Line({ x: 8, y: 4 }, { x: 4, y: 12 });
+      const actual = line.split();
+      const expected = [
+        new Line({ x: 8, y: 4 }, { x: 6, y: 8 }),
+        new Line({ x: 6, y: 8 }, { x: 4, y: 12 })
+      ];
+      assert.deepStrictEqual(actual, expected);
+    });
+  });
 });
