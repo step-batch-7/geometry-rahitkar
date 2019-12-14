@@ -28,4 +28,13 @@ describe("point", () => {
       assert.strictEqual(actual, expected);
     });
   });
+
+  describe("isEqualTo", () => {
+    it("should give true for same points", () => {
+      const point = new Point(2, 4);
+      const actual = point.isEqualTo({ x: 2, y: 4 });
+      const expected = true;
+      assert.strictEqual(actual, expected);
+    });
+  });
 });
