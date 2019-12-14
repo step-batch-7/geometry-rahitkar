@@ -1,4 +1,4 @@
-const assert = require("assert");
+const assert = require("chai").assert;
 const Line = require("../src/line");
 
 describe("line", () => {
@@ -57,8 +57,8 @@ describe("line", () => {
     it("should give the length of a line having two different end points", () => {
       const line = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       const actual = line.length;
-      const expected = 2.8284271247461903;
-      assert.strictEqual(actual, expected);
+      const expected = 2.8;
+      assert.approximately(actual, expected, 0.1, "numbers are close by 0.1");
     });
 
     it("should give length zero for a point", () => {
@@ -184,7 +184,7 @@ describe("line", () => {
       const line = new Line({ x: 1, y: 2 }, { x: 1, y: 2 });
       const actual = line.slope;
       const expected = NaN;
-      assert.strictEqual(actual, expected);
+      assert.isNaN(actual, expected);
     });
   });
 });
