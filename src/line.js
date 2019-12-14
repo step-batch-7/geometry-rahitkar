@@ -54,6 +54,10 @@ class Line {
       !(areOrdinatesEqual(this, other) || areAbscissasEqual(this, other))
     );
   }
+
+  findX(y) {
+    return (y - this.start.y + this.slope * this.start.x) / this.slope;
+  }
 }
 
 module.exports = Line;

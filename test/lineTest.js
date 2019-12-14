@@ -110,7 +110,7 @@ describe("line", () => {
       assert.strictEqual(actual, expected);
     });
 
-    it("should give false for given two lines inclined to both the axis and having one end coordinate same but other end different", () => {
+    it("should give false for given two lines inclined to both the axis and having one end same but other end different", () => {
       const line = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       const otherLine = new Line({ x: 1, y: 2 }, { x: 4, y: 4 });
       const actual = line.parallel(otherLine);
@@ -118,7 +118,7 @@ describe("line", () => {
       assert.strictEqual(actual, expected);
     });
 
-    it("should give false for given two lines parallel to x-axis and having one end coordinate same but other end different", () => {
+    it("should give false for given two lines parallel to x-axis and having one end same but other end different", () => {
       const line = new Line({ x: 1, y: 2 }, { x: 4, y: 2 });
       const otherLine = new Line({ x: 1, y: 2 }, { x: 3, y: 2 });
       const actual = line.parallel(otherLine);
@@ -126,7 +126,7 @@ describe("line", () => {
       assert.strictEqual(actual, expected);
     });
 
-    it("should give false for given two lines parallel to y-axis and having one end coordinate same but other end different", () => {
+    it("should give false for given two lines parallel to y-axis and having one end same but other end different", () => {
       const line = new Line({ x: 1, y: 2 }, { x: 1, y: 4 });
       const otherLine = new Line({ x: 1, y: 2 }, { x: 1, y: 6 });
       const actual = line.parallel(otherLine);
@@ -134,7 +134,7 @@ describe("line", () => {
       assert.strictEqual(actual, expected);
     });
 
-    it("should give false for given two lines having all same ordinates but different abscissas", () => {
+    it("should give false for given two colinear lines parallel to x-axis", () => {
       const line = new Line({ x: 1, y: 2 }, { x: 3, y: 2 });
       const otherLine = new Line({ x: 4, y: 2 }, { x: 6, y: 2 });
       const actual = line.parallel(otherLine);
@@ -142,7 +142,7 @@ describe("line", () => {
       assert.strictEqual(actual, expected);
     });
 
-    it("should give false for given two lines having all same abscissas but different ordinates", () => {
+    it("should give false for given two colinear lines parallel to y-axis", () => {
       const line = new Line({ x: 1, y: 2 }, { x: 1, y: 4 });
       const otherLine = new Line({ x: 1, y: 6 }, { x: 1, y: 8 });
       const actual = line.parallel(otherLine);
@@ -185,6 +185,15 @@ describe("line", () => {
       const actual = line.slope;
       const expected = NaN;
       assert.isNaN(actual, expected);
+    });
+  });
+
+  describe("findX", () => {
+    it("should give x value for given y value", () => {
+      const line = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+      const actual = line.findX(-3);
+      const expected = -4;
+      assert.strictEqual(actual, expected);
     });
   });
 });
