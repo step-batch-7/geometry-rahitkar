@@ -19,5 +19,13 @@ describe("point", () => {
       const expected = 6;
       assert.strictEqual(actual, expected);
     });
+
+    it("should give multiplied value of two numbers when multiplication function is passed", () => {
+      const point = new Point(2, 4);
+      const mul = (x, y) => x * y;
+      const actual = point.visit(mul);
+      const expected = 8;
+      assert.strictEqual(actual, expected);
+    });
   });
 });
