@@ -69,11 +69,11 @@ describe("line", () => {
     });
   });
 
-  describe("parallel", () => {
+  describe("isParallelTo", () => {
     it("should give true for two inclined parallel lines", () => {
       const line = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       const otherLine = new Line({ x: 1, y: 3 }, { x: 4, y: 6 });
-      const actual = line.parallel(otherLine);
+      const actual = line.isParallelTo(otherLine);
       const expected = true;
       assert.strictEqual(actual, expected);
     });
@@ -81,7 +81,7 @@ describe("line", () => {
     it("should give true for two lines parallel to x-axis and also parallel to each other", () => {
       const line = new Line({ x: 1, y: 2 }, { x: 4, y: 2 });
       const otherLine = new Line({ x: 1, y: 4 }, { x: 3, y: 4 });
-      const actual = line.parallel(otherLine);
+      const actual = line.isParallelTo(otherLine);
       const expected = true;
       assert.strictEqual(actual, expected);
     });
@@ -89,7 +89,7 @@ describe("line", () => {
     it("should give true for two lines parallel to y-axis and also parallel to each other", () => {
       const line = new Line({ x: 1, y: 2 }, { x: 1, y: 4 });
       const otherLine = new Line({ x: 3, y: 2 }, { x: 3, y: 6 });
-      const actual = line.parallel(otherLine);
+      const actual = line.isParallelTo(otherLine);
       const expected = true;
       assert.strictEqual(actual, expected);
     });
@@ -97,7 +97,7 @@ describe("line", () => {
     it("should give false for non parallel lines", () => {
       const line = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       const otherLine = new Line({ x: 1, y: 3 }, { x: 4, y: 4 });
-      const actual = line.parallel(otherLine);
+      const actual = line.isParallelTo(otherLine);
       const expected = false;
       assert.strictEqual(actual, expected);
     });
@@ -105,7 +105,7 @@ describe("line", () => {
     it("should give false for given same line", () => {
       const line = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       const otherLine = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
-      const actual = line.parallel(otherLine);
+      const actual = line.isParallelTo(otherLine);
       const expected = false;
       assert.strictEqual(actual, expected);
     });
@@ -113,7 +113,7 @@ describe("line", () => {
     it("should give false for given two lines inclined to both the axis and having one end same but other end different", () => {
       const line = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       const otherLine = new Line({ x: 1, y: 2 }, { x: 4, y: 4 });
-      const actual = line.parallel(otherLine);
+      const actual = line.isParallelTo(otherLine);
       const expected = false;
       assert.strictEqual(actual, expected);
     });
@@ -121,7 +121,7 @@ describe("line", () => {
     it("should give false for given two lines parallel to x-axis and having one end same but other end different", () => {
       const line = new Line({ x: 1, y: 2 }, { x: 4, y: 2 });
       const otherLine = new Line({ x: 1, y: 2 }, { x: 3, y: 2 });
-      const actual = line.parallel(otherLine);
+      const actual = line.isParallelTo(otherLine);
       const expected = false;
       assert.strictEqual(actual, expected);
     });
@@ -129,7 +129,7 @@ describe("line", () => {
     it("should give false for given two lines parallel to y-axis and having one end same but other end different", () => {
       const line = new Line({ x: 1, y: 2 }, { x: 1, y: 4 });
       const otherLine = new Line({ x: 1, y: 2 }, { x: 1, y: 6 });
-      const actual = line.parallel(otherLine);
+      const actual = line.isParallelTo(otherLine);
       const expected = false;
       assert.strictEqual(actual, expected);
     });
@@ -137,7 +137,7 @@ describe("line", () => {
     it("should give false for given two colinear lines parallel to x-axis", () => {
       const line = new Line({ x: 1, y: 2 }, { x: 3, y: 2 });
       const otherLine = new Line({ x: 4, y: 2 }, { x: 6, y: 2 });
-      const actual = line.parallel(otherLine);
+      const actual = line.isParallelTo(otherLine);
       const expected = false;
       assert.strictEqual(actual, expected);
     });
@@ -145,7 +145,7 @@ describe("line", () => {
     it("should give false for given two colinear lines parallel to y-axis", () => {
       const line = new Line({ x: 1, y: 2 }, { x: 1, y: 4 });
       const otherLine = new Line({ x: 1, y: 6 }, { x: 1, y: 8 });
-      const actual = line.parallel(otherLine);
+      const actual = line.isParallelTo(otherLine);
       const expected = false;
       assert.strictEqual(actual, expected);
     });
@@ -190,9 +190,53 @@ describe("line", () => {
 
   describe("findX", () => {
     it("should give x value for given y value", () => {
-      const line = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
-      const actual = line.findX(-3);
-      const expected = -4;
+      const line = new Line({ x: 1, y: 1 }, { x: 3, y: 7 });
+      const actual = line.findX(4);
+      const expected = 2;
+      assert.strictEqual(actual, expected);
+    });
+
+    it("should give NaN for given y value which is outside the Line Segment", () => {
+      const line = new Line({ x: 1, y: 4 }, { x: 3, y: 6 });
+      const actual = line.findX(2);
+      const expected = NaN;
+      assert.isNaN(actual, expected);
+    });
+
+    it("should give the start point value of x for 0 value of slope", () => {
+      const line = new Line({ x: 1, y: 1 }, { x: 3, y: 1 });
+      const actual = line.findX(1);
+      const expected = 1;
+      assert.strictEqual(actual, expected);
+    });
+  });
+
+  describe("findY", () => {
+    it("should give y value for given x value", () => {
+      const line = new Line({ x: 1, y: 1 }, { x: 3, y: 7 });
+      const actual = line.findY(2);
+      const expected = 4;
+      assert.strictEqual(actual, expected);
+    });
+
+    it("should give NaN for given x value which is outside the Line Segment", () => {
+      const line = new Line({ x: 1, y: 4 }, { x: 3, y: 6 });
+      const actual = line.findY(0);
+      const expected = NaN;
+      assert.isNaN(actual, expected);
+    });
+
+    it("should give the start point value of x for +infinity value of slope", () => {
+      const line = new Line({ x: 1, y: 1 }, { x: 3, y: 1 });
+      const actual = line.findY(1);
+      const expected = 1;
+      assert.strictEqual(actual, expected);
+    });
+
+    it("should give the start point value of x for -infinity value of slope", () => {
+      const line = new Line({ x: 1, y: -1 }, { x: 1, y: 1 });
+      const actual = line.findY(1);
+      const expected = -1;
       assert.strictEqual(actual, expected);
     });
   });

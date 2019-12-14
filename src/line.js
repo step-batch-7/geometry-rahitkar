@@ -44,7 +44,7 @@ class Line {
     return (this.end.y - this.start.y) / (this.end.x - this.start.x);
   }
 
-  parallel(other) {
+  isParallelTo(other) {
     if (this.isEqualTo(other)) {
       return false;
     }
@@ -56,7 +56,20 @@ class Line {
   }
 
   findX(y) {
+    if (y < this.start.y || y > this.end.y) return NaN;
+
+    if (this.slope === 0) return this.start.x;
+
     return (y - this.start.y + this.slope * this.start.x) / this.slope;
+  }
+
+  findY(x) {
+    if (x < this.start.x || x > this.end.x) return NaN;
+
+    if (this.slope === Infinity || this.slope === -Infinity)
+      return this.start.y;
+
+    return this.slope * (x - this.start.x) + this.start.y;
   }
 }
 
