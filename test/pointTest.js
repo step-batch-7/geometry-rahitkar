@@ -36,5 +36,12 @@ describe("point", () => {
       const expected = true;
       assert.strictEqual(actual, expected);
     });
+
+    it("should give false for same points", () => {
+      const point = new Point(2, 4);
+      const actual = point.isEqualTo({ x: 7, y: 3 });
+      const expected = false;
+      assert.strictEqual(actual, expected);
+    });
   });
 });
