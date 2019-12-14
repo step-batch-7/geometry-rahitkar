@@ -242,7 +242,7 @@ describe("line", () => {
   });
 
   describe("split", () => {
-    it("should give a list of two line objects", () => {
+    it("should give a list of two line object splitted from middle", () => {
       const line = new Line({ x: 8, y: 4 }, { x: 4, y: 12 });
       const actual = line.split();
       const expected = [
@@ -250,6 +250,25 @@ describe("line", () => {
         new Line({ x: 6, y: 8 }, { x: 4, y: 12 })
       ];
       assert.deepStrictEqual(actual, expected);
+    });
+
+    it("should give a list of two ", () => {
+      const line = new Line({ x: 2, y: 2 }, { x: 2, y: 2 });
+      const actual = line.split();
+      const expected = [
+        new Line({ x: 2, y: 2 }, { x: 2, y: 2 }),
+        new Line({ x: 2, y: 2 }, { x: 2, y: 2 })
+      ];
+      assert.deepStrictEqual(actual, expected);
+    });
+  });
+
+  describe("hasPoint", () => {
+    it("should give true for given point which is on the line", () => {
+      const line = new Line({ x: 8, y: 4 }, { x: 4, y: 12 });
+      const actual = line.hasPoint({ x: 8, y: 4 });
+      const expected = true;
+      assert.strictEqual(actual, expected);
     });
   });
 });

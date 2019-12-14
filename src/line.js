@@ -71,6 +71,7 @@ class Line {
 
     return this.slope * (x - this.start.x) + this.start.y;
   }
+
   split() {
     const midPoint = {
       x: (this.start.x + this.end.x) / 2,
@@ -80,6 +81,11 @@ class Line {
     const start = { x: this.start.x, y: this.start.y };
     const end = { x: this.end.x, y: this.end.y };
     return [new Line(start, midPoint), new Line(midPoint, end)];
+  }
+
+  hasPoint(point) {
+    const c = this.start.y - this.slope * this.start.x;
+    return point.y === this.slope * point.x + c;
   }
 }
 
