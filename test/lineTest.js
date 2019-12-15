@@ -1,12 +1,13 @@
 const assert = require("chai").assert;
 const Line = require("../src/line");
+const Point = require("../src/point");
 
 describe("line", () => {
   describe("toString", () => {
     it("should give a string version of newly made object", () => {
       const line = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       const actual = line.toString();
-      const expected = `Line (1, 2) to (3, 4)`;
+      const expected = `[Line (1,2) to (3,4)]`;
 
       assert.strictEqual(actual, expected);
     });
@@ -48,6 +49,15 @@ describe("line", () => {
 
       const actual = line.isEqualTo({});
       const expected = false;
+
+      assert.strictEqual(actual, expected);
+    });
+
+    it("should give true for given two same line", () => {
+      const line = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+
+      const actual = line.isEqualTo(line);
+      const expected = true;
 
       assert.strictEqual(actual, expected);
     });
@@ -134,6 +144,14 @@ describe("line", () => {
       assert.strictEqual(actual, expected);
     });
 
+    it("should give false for given two lines over each other but having both different ends", () => {
+      const line = new Line({ x: 4, y: 4 }, { x: 8, y: 4 });
+      const otherLine = new Line({ x: 5, y: 4 }, { x: 6, Y: 4 });
+      const actual = line.isParallelTo(otherLine);
+      const expected = false;
+      assert.strictEqual(actual, expected);
+    });
+
     it("should give false for given two colinear lines parallel to x-axis", () => {
       const line = new Line({ x: 1, y: 2 }, { x: 3, y: 2 });
       const otherLine = new Line({ x: 4, y: 2 }, { x: 6, y: 2 });
@@ -145,6 +163,22 @@ describe("line", () => {
     it("should give false for given two colinear lines parallel to y-axis", () => {
       const line = new Line({ x: 1, y: 2 }, { x: 1, y: 4 });
       const otherLine = new Line({ x: 1, y: 6 }, { x: 1, y: 8 });
+      const actual = line.isParallelTo(otherLine);
+      const expected = false;
+      assert.strictEqual(actual, expected);
+    });
+
+    it("should give false for two lines over each other and inclined to both  the axis", function() {
+      const line = new Line({ x: 1, y: 2 }, { x: 10, y: 11 });
+      const otherLine = new Line({ x: 2, y: 3 }, { x: 3, y: 4 });
+      const actual = line.isParallelTo(otherLine);
+      const expected = false;
+      assert.strictEqual(actual, expected);
+    });
+
+    it("should give false for two different line segments who are part of same line and inclined to both axis", function() {
+      const line = new Line({ x: 6, y: 7 }, { x: 10, y: 11 });
+      const otherLine = new Line({ x: 2, y: 3 }, { x: 3, y: 4 });
       const actual = line.isParallelTo(otherLine);
       const expected = false;
       assert.strictEqual(actual, expected);
@@ -266,7 +300,8 @@ describe("line", () => {
   describe("hasPoint", () => {
     it("should give true for given point which is on the line", () => {
       const line = new Line({ x: 8, y: 4 }, { x: 4, y: 12 });
-      const actual = line.hasPoint({ x: 8, y: 4 });
+      const point = new Point(8, 4);
+      const actual = line.hasPoint(point);
       const expected = true;
       assert.strictEqual(actual, expected);
     });

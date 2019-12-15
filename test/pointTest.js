@@ -6,7 +6,7 @@ describe("point", () => {
     it("should give string representation of point", () => {
       const point = new Point(2, 4);
       const actual = point.toString();
-      const expected = `point @(2, 4)`;
+      const expected = `[Point @(2,4)]`;
       assert.strictEqual(actual, expected);
     });
   });

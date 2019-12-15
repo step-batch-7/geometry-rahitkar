@@ -4,7 +4,7 @@ class Point {
   }
 
   toString() {
-    return `point @(${this.x}, ${this.y})`;
+    return `[Point @(${this.x},${this.y})]`;
   }
 
   visit(func) {

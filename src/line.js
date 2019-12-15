@@ -21,13 +21,14 @@ class Line {
   }
 
   toString() {
-    return `Line (${this.start.x}, ${this.start.y}) to (${this.end.x}, ${this.end.y})`;
+    return `[Line (${this.start.x},${this.start.y}) to (${this.end.x},${this.end.y})]`;
   }
 
   isEqualTo(other) {
-    if (!(other instanceof Line)) {
-      return false;
-    }
+    if (this === other) return true;
+
+    if (!(other instanceof Line)) return false;
+
     return (
       arePointsEqual(this.start, other.start) &&
       arePointsEqual(this.end, other.end)
@@ -51,7 +52,8 @@ class Line {
 
     return (
       this.slope === other.slope &&
-      !(areOrdinatesEqual(this, other) || areAbscissasEqual(this, other))
+      !(areOrdinatesEqual(this, other) || areAbscissasEqual(this, other)) &&
+      !this.hasPoint({ x: other.start.x, y: other.start.y })
     );
   }
 
@@ -84,8 +86,8 @@ class Line {
   }
 
   hasPoint(point) {
-    const c = this.start.y - this.slope * this.start.x;
-    return point.y === this.slope * point.x + c;
+    const yIntercept = this.start.y - this.slope * this.start.x;
+    return point.y === this.slope * point.x + yIntercept;
   }
 }
 
