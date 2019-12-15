@@ -1,3 +1,5 @@
+const Point = require("./point");
+
 const arePointsEqual = (pointA, pointB) => {
   return pointA.x === pointB.x && pointA.y === pointB.y;
 };
@@ -12,6 +14,11 @@ const areAbscissasEqual = (myLine, otherLine) => {
   return (
     myLine.start.x === otherLine.start.x && myLine.end.x === otherLine.end.x
   );
+};
+
+const doesLiesOnLine = (point, line) => {
+  const yIntercept = line.start.y - line.slope * line.start.x;
+  return point.y === line.slope * point.x + yIntercept;
 };
 
 class Line {
@@ -53,7 +60,7 @@ class Line {
     return (
       this.slope === other.slope &&
       !(areOrdinatesEqual(this, other) || areAbscissasEqual(this, other)) &&
-      !this.hasPoint({ x: other.start.x, y: other.start.y })
+      !doesLiesOnLine({ x: other.start.x, y: other.start.y }, this)
     );
   }
 
@@ -86,8 +93,10 @@ class Line {
   }
 
   hasPoint(point) {
-    const yIntercept = this.start.y - this.slope * this.start.x;
-    return point.y === this.slope * point.x + yIntercept;
+    return (
+      point instanceof Point &&
+      (point.x === this.findX(point.y) || point.y === this.findY(point.x))
+    );
   }
 }
 

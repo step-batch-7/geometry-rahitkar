@@ -168,7 +168,7 @@ describe("line", () => {
       assert.strictEqual(actual, expected);
     });
 
-    it("should give false for two lines over each other and inclined to both  the axis", function() {
+    it("should give false for two lines over each other and inclined to both  the axis", () => {
       const line = new Line({ x: 1, y: 2 }, { x: 10, y: 11 });
       const otherLine = new Line({ x: 2, y: 3 }, { x: 3, y: 4 });
       const actual = line.isParallelTo(otherLine);
@@ -176,7 +176,7 @@ describe("line", () => {
       assert.strictEqual(actual, expected);
     });
 
-    it("should give false for two different line segments who are part of same line and inclined to both axis", function() {
+    it("should give false for two different line segments which are part of same line and inclined to both axis", () => {
       const line = new Line({ x: 6, y: 7 }, { x: 10, y: 11 });
       const otherLine = new Line({ x: 2, y: 3 }, { x: 3, y: 4 });
       const actual = line.isParallelTo(otherLine);
@@ -298,11 +298,33 @@ describe("line", () => {
   });
 
   describe("hasPoint", () => {
-    it("should give true for given point which is on the line", () => {
+    it("should give true for given point which is on the line segment", () => {
       const line = new Line({ x: 8, y: 4 }, { x: 4, y: 12 });
-      const point = new Point(8, 4);
+      const point = new Point(4, 12);
       const actual = line.hasPoint(point);
       const expected = true;
+      assert.strictEqual(actual, expected);
+    });
+    it("should give false for point which is not on the line segment", () => {
+      const line = new Line({ x: 8, y: 4 }, { x: 4, y: 12 });
+      const point = new Point(1, 2);
+      const actual = line.hasPoint(point);
+      const expected = false;
+      assert.strictEqual(actual, expected);
+    });
+
+    it("should give false for given point which is on the line but not on the line segment ", () => {
+      const line = new Line({ x: 6, y: 7 }, { x: 10, y: 11 });
+      const point = new Point(2, 3);
+      const actual = line.hasPoint(point);
+      const expected = false;
+      assert.strictEqual(actual, expected);
+    });
+
+    it("should give false for given input which is not a point object", () => {
+      const line = new Line({ x: 6, y: 7 }, { x: 10, y: 11 });
+      const actual = line.hasPoint(2, 3);
+      const expected = false;
       assert.strictEqual(actual, expected);
     });
   });
