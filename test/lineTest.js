@@ -329,8 +329,38 @@ describe("line", () => {
     });
   });
 
-  describe("findPointFromEnd", () => {
+  describe("findPointFromStart", () => {
     it("should return a point at a given distance of from the start of line", () => {
+      const line = new Line({ x: 1, y: 1 }, { x: 7, y: 9 });
+      const actual = line.findPointFromStart(5);
+      const expected = new Point(4, 5);
+      assert.deepStrictEqual(actual, expected);
+    });
+
+    it("should give null if given distance is greater then the line length", () => {
+      const line = new Line({ x: 1, y: 1 }, { x: 7, y: 9 });
+      const actual = line.findPointFromStart(11);
+      const expected = null;
+      assert.strictEqual(actual, expected);
+    });
+
+    it("should give null if given distance is not a integer", () => {
+      const line = new Line({ x: 1, y: 1 }, { x: 7, y: 9 });
+      const actual = line.findPointFromStart(11.1435);
+      const expected = null;
+      assert.strictEqual(actual, expected);
+    });
+
+    it("should give null if given distance is negative", () => {
+      const line = new Line({ x: 1, y: 1 }, { x: 7, y: 9 });
+      const actual = line.findPointFromStart(-11);
+      const expected = null;
+      assert.strictEqual(actual, expected);
+    });
+  });
+
+  describe("findPointFromEnd", () => {
+    it("should return a point at a given distance of from the end of line", () => {
       const line = new Line({ x: 1, y: 1 }, { x: 7, y: 9 });
       const actual = line.findPointFromStart(5);
       const expected = new Point(4, 5);

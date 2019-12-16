@@ -111,6 +111,14 @@ class Line {
     const point = new Point(xCoordinate, yCoordinate);
     return point;
   }
+
+  findPointFromEnd(distance) {
+    new Line(
+      { x: this.end.x, y: this.end.y },
+      { x: this.start.x, y: this.start.y }
+    );
+    findPointFromStart(distance);
+  }
 }
 
 module.exports = Line;
