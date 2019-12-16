@@ -36,7 +36,7 @@ class Line {
 
   get length() {
     return this.start.findDistanceTo(this.end);
-  } 
+  }
 
   get slope() {
     return (this.end.y - this.start.y) / (this.end.x - this.start.x);
@@ -105,5 +105,4 @@ class Line {
     return reversedLine.findPointFromStart(distance);
   }
 }
-
 module.exports = Line;
