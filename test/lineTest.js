@@ -336,6 +336,12 @@ describe("line", () => {
       const expected = false;
       assert.strictEqual(actual, expected);
     });
+
+    // it("should validate if the given point is on the line segment and the line is a vertical line", () => {
+    // const actual =  ;
+    // const expected =  ;
+    // assert.equalizer(actual, expected)
+    // })
   });
 
   describe("findPointFromStart", () => {
@@ -366,6 +372,13 @@ describe("line", () => {
       const expected = null;
       assert.strictEqual(actual, expected);
     });
+
+    it("should give last point if given distance is zero", () => {
+      const line = new Line({ x: 1, y: 1 }, { x: 7, y: 9 });
+      const actual = line.findPointFromStart(0);
+      const expected = new Point(1, 1);
+      assert.deepStrictEqual(actual, expected);
+    });
   });
 
   describe("findPointFromEnd", () => {
@@ -395,6 +408,13 @@ describe("line", () => {
       const actual = line.findPointFromEnd(-11);
       const expected = null;
       assert.strictEqual(actual, expected);
+    });
+
+    it("should give last point if given distance is zero", () => {
+      const line = new Line({ x: 1, y: 1 }, { x: 7, y: 9 });
+      const actual = line.findPointFromEnd(0);
+      const expected = new Point(7, 9);
+      assert.deepStrictEqual(actual, expected);
     });
   });
 });

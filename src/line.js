@@ -35,10 +35,8 @@ class Line {
   }
 
   get length() {
-    return Math.sqrt(
-      (this.start.x - this.end.x) ** 2 + (this.start.y - this.end.y) ** 2
-    );
-  }
+    return this.start.findDistanceTo(this.end);
+  } 
 
   get slope() {
     return (this.end.y - this.start.y) / (this.end.x - this.start.x);
@@ -100,11 +98,11 @@ class Line {
   }
 
   findPointFromEnd(distance) {
-    new Line(
+    const reversedLine = new Line(
       new Point(this.end.x, this.end.y),
       new Point(this.start.x, this.start.y)
     );
-    return this.findPointFromStart(distance);
+    return reversedLine.findPointFromStart(distance);
   }
 }
 

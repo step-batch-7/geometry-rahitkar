@@ -20,7 +20,12 @@ class Point {
   clone() {
     return new Point(this.x, this.y);
   }
-  
+
+  findDistanceTo(otherPoint) {
+    return Math.sqrt(
+      (otherPoint.x - this.x) ** 2 + (otherPoint.y - this.y) ** 2
+    );
+  }
 }
 
 module.exports = Point;
