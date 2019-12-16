@@ -23,8 +23,8 @@ const doesLiesOnLine = (point, line) => {
 
 class Line {
   constructor(start, end) {
-    this.start = { x: start.x, y: start.y };
-    this.end = { x: end.x, y: end.y };
+    this.start = new Point(start.x, start.y);
+    this.end = new Point(end.x, end.y);
   }
 
   toString() {
@@ -114,10 +114,10 @@ class Line {
 
   findPointFromEnd(distance) {
     new Line(
-      { x: this.end.x, y: this.end.y },
-      { x: this.start.x, y: this.start.y }
+      new Point(this.end.x, this.end.y),
+      new Point(this.start.x, this.start.y)
     );
-    findPointFromStart(distance);
+    return this.findPointFromStart(distance);
   }
 }
 
