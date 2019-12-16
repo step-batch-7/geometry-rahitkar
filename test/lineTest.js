@@ -373,6 +373,13 @@ describe("line", () => {
       const expected = new Point(1, 1);
       assert.deepStrictEqual(actual, expected);
     });
+
+    it("should give ending Point of line if given distance is equal to length", () => {
+      const line = new Line({ x: 1, y: 1 }, { x: 7, y: 9 });
+      const actual = line.findPointFromStart(10);
+      const expected = new Point(7, 9);
+      assert.deepStrictEqual(actual, expected);
+    });
   });
 
   describe("findPointFromEnd", () => {
@@ -408,6 +415,13 @@ describe("line", () => {
       const line = new Line({ x: 1, y: 1 }, { x: 7, y: 9 });
       const actual = line.findPointFromEnd(0);
       const expected = new Point(7, 9);
+      assert.deepStrictEqual(actual, expected);
+    });
+
+    it("should give starting Point of line if given distance is equal to length", () => {
+      const line = new Line({ x: 1, y: 1 }, { x: 7, y: 9 });
+      const actual = line.findPointFromEnd(10);
+      const expected = new Point(1, 1);
       assert.deepStrictEqual(actual, expected);
     });
   });
