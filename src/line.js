@@ -4,21 +4,11 @@ const arePointsEqual = (pointA, pointB) => {
   return pointA.x === pointB.x && pointA.y === pointB.y;
 };
 
-const areOrdinatesEqual = (myLine, otherLine) => {
+const isColinear = (pointOne, pointTwo, pointThree) => {
   return (
-    myLine.start.y === otherLine.start.y && myLine.end.y === otherLine.end.y
+    (pointThree.y - pointTwo.y) * (pointTwo.x - pointOne.x) ===
+    (pointTwo.y - pointOne.y) * (pointThree.x - pointTwo.x)
   );
-};
-
-const areAbscissasEqual = (myLine, otherLine) => {
-  return (
-    myLine.start.x === otherLine.start.x && myLine.end.x === otherLine.end.x
-  );
-};
-
-const doesLiesOnLine = (point, line) => {
-  const yIntercept = line.start.y - line.slope * line.start.x;
-  return point.y === line.slope * point.x + yIntercept;
 };
 
 class Line {
@@ -53,14 +43,9 @@ class Line {
   }
 
   isParallelTo(other) {
-    if (this.isEqualTo(other)) {
-      return false;
-    }
-
     return (
       this.slope === other.slope &&
-      !(areOrdinatesEqual(this, other) || areAbscissasEqual(this, other)) &&
-      !doesLiesOnLine({ x: other.start.x, y: other.start.y }, this)
+      !isColinear(this.start, this.end, other.start)
     );
   }
 
