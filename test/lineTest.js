@@ -61,6 +61,15 @@ describe("line", () => {
 
       assert.strictEqual(actual, expected);
     });
+
+    it("should give true for given with altered start and end", () => {
+      const line = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+      const otherLine = new Line({ x: 3, y: 4 }, { x: 1, y: 2 });
+
+      const actual = line.isEqualTo(otherLine);
+      const expected = true;
+      assert.strictEqual(actual, expected);
+    });
   });
 
   describe("length", () => {
