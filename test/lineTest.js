@@ -328,4 +328,13 @@ describe("line", () => {
       assert.strictEqual(actual, expected);
     });
   });
+
+  describe.only("findPointFromEnd", () => {
+    it("should return a point at a given distance of from the start of line", () => {
+      const line = new Line({ x: 1, y: 1 }, { x: 7, y: 9 });
+      const actual = line.findPointFromStart(5);
+      const expected = new Point(4, 5);
+      assert.deepStrictEqual(actual, expected);
+    });
+  });
 });

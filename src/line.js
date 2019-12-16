@@ -92,11 +92,24 @@ class Line {
     return [new Line(start, midPoint), new Line(midPoint, end)];
   }
 
-  hasPoint(point) {
+  hasPoint(otherPoint) {
     return (
-      point instanceof Point &&
-      (point.x === this.findX(point.y) || point.y === this.findY(point.x))
+      otherPoint instanceof Point &&
+      (otherPoint.x === this.findX(otherPoint.y) ||
+        otherPoint.y === this.findY(otherPoint.x))
     );
+  }
+
+  findPointFromStart(distance) {
+    if (distance > this.length || !Number.isInteger(distance) || distance < 0)
+      return null;
+    const ratio = distance / this.length;
+
+    const xCoordinate = (1 - ratio) * this.start.x + this.end.x * ratio;
+    const yCoordinate = (1 - ratio) * this.start.y + this.end.y * ratio;
+
+    const point = new Point(xCoordinate, yCoordinate);
+    return point;
   }
 }
 

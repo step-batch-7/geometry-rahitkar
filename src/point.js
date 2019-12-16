@@ -11,13 +11,16 @@ class Point {
     return func(this.x, this.y);
   }
 
-  isEqualTo(point) {
-    return this.x === point.x && this.y === point.y;
+  isEqualTo(otherPoint) {
+    if (!(otherPoint instanceof Point)) return false;
+
+    return this.x === otherPoint.x && this.y === otherPoint.y;
   }
 
   clone() {
     return new Point(this.x, this.y);
   }
+  
 }
 
 module.exports = Point;

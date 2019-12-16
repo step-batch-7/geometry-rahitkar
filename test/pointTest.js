@@ -32,14 +32,23 @@ describe("point", () => {
   describe("isEqualTo", () => {
     it("should give true for same points", () => {
       const point = new Point(2, 4);
-      const actual = point.isEqualTo({ x: 2, y: 4 });
+      const otherPoint = new Point(2, 4);
+      const actual = point.isEqualTo(otherPoint);
       const expected = true;
       assert.strictEqual(actual, expected);
     });
 
     it("should give false for same points", () => {
       const point = new Point(2, 4);
-      const actual = point.isEqualTo({ x: 7, y: 3 });
+      const otherPoint = new Point(7, 3);
+      const actual = point.isEqualTo(otherPoint);
+      const expected = false;
+      assert.strictEqual(actual, expected);
+    });
+
+    it("should give false for passed object is not a point", () => {
+      const point = new Point(2, 4);
+      const actual = point.isEqualTo(2, 4);
       const expected = false;
       assert.strictEqual(actual, expected);
     });
