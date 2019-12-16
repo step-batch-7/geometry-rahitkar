@@ -336,12 +336,6 @@ describe("line", () => {
       const expected = false;
       assert.strictEqual(actual, expected);
     });
-
-    // it("should validate if the given point is on the line segment and the line is a vertical line", () => {
-    // const actual =  ;
-    // const expected =  ;
-    // assert.equalizer(actual, expected)
-    // })
   });
 
   describe("findPointFromStart", () => {

@@ -22,9 +22,15 @@ class Point {
   }
 
   findDistanceTo(otherPoint) {
+    if (!otherPoint instanceof Point) return NaN;
+
     return Math.sqrt(
       (otherPoint.x - this.x) ** 2 + (otherPoint.y - this.y) ** 2
     );
+  }
+
+  isOn(line) {
+    return line.hasPoint(this);
   }
 }
 
