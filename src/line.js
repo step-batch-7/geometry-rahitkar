@@ -11,6 +11,11 @@ const isColinear = (pointOne, pointTwo, pointThree) => {
   );
 };
 
+const isInRange = (range, point) => {
+  [lowerLimit, upperLimit] = range.sort((num1, num2) => num1 - num2);
+  return upperLimit >= point && lowerLimit <= point;
+};
+
 class Line {
   constructor(start, end) {
     this.start = new Point(start.x, start.y);
@@ -52,11 +57,11 @@ class Line {
   }
 
   findX(y) {
-    if (y < this.start.y || y > this.end.y) return NaN;
+    if (!isInRange([this.start.y, this.end.y], y)) return NaN;
 
     if (this.slope === 0) return this.start.x;
 
-    return (y - this.start.y + this.slope * this.start.x) / this.slope;
+    return (y - this.start.y) / this.slope + this.start.x;
   }
 
   findY(x) {

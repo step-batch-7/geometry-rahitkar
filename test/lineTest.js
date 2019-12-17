@@ -233,9 +233,9 @@ describe("line", () => {
 
   describe("findX", () => {
     it("should give x value for given y value", () => {
-      const line = new Line({ x: 1, y: 1 }, { x: 3, y: 7 });
-      const actual = line.findX(4);
-      const expected = 2;
+      const line = new Line({ x: -1, y: 3 }, { x: 3, y: -1 });
+      const actual = line.findX(1);
+      const expected = 1;
       assert.strictEqual(actual, expected);
     });
 
