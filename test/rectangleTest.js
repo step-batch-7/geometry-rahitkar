@@ -10,4 +10,24 @@ describe("Rectangle", () => {
       assert.strictEqual(actual, expected);
     });
   });
+
+  describe("area", () => {
+    it("should give the area of a rectangle by given points of diagonal", () => {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 5, y: 4 });
+      const actual = rectangle.area;
+      const expected = 12;
+      assert.strictEqual(actual, expected);
+    });
+
+    it("should give the area as zero of a rectangle whose diagonal is parallel to any the two axis", () => {
+      let rectangle = new Rectangle({ x: 1, y: 1 }, { x: 5, y: 1 });
+      let actual = rectangle.area;
+      const expected = 0;
+      assert.strictEqual(actual, expected);
+
+      rectangle = new Rectangle({ x: 1, y: 1 }, { x: 1, y: 5 });
+      actual = rectangle.area;
+      assert.strictEqual(actual, expected);
+    });
+  });
 });
