@@ -1,5 +1,7 @@
 const assert = require("chai").assert;
 const Circle = require("../src/circle");
+const Point = require("../src/point");
+
 describe("circle", () => {
   describe("toString", () => {
     it("should give string representation of circle", () => {
@@ -58,6 +60,16 @@ describe("circle", () => {
       const actual = circle.perimeter;
       const expected = 31.41;
       assert.approximately(actual, expected, 0.1, "numbers are close by 0.1");
+    });
+  });
+  // c.hasPoint(p) // is true if circle c has point p on it
+  describe("hasPoint", () => {
+    it("should give true if the given point is on circle", () => {
+      const circle = new Circle({ x: 0, y: 0 }, 5);
+      const point = new Point(0, 0);
+      const actual = circle.hasPoint(point);
+      const expected = true;
+      assert.strictEqual(actual, expected);
     });
   });
 });
