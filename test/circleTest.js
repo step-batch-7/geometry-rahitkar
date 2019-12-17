@@ -51,4 +51,13 @@ describe("circle", () => {
       assert.approximately(actual, expected, 0.1, "numbers are close by 0.1");
     });
   });
+
+  describe("perimeter", () => {
+    it("should give perimeter of a given circle object", () => {
+      const circle = new Circle({ x: 0, y: 0 }, 5);
+      const actual = circle.perimeter;
+      const expected = 31.41;
+      assert.approximately(actual, expected, 0.1, "numbers are close by 0.1");
+    });
+  });
 });
