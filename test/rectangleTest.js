@@ -53,4 +53,22 @@ describe("Rectangle", () => {
       assert.strictEqual(actual, expected);
     });
   });
+
+  describe("isEqualTo", () => {
+    it("should give true if given rectangle is in same coordinate", () => {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 5, y: 4 });
+      const otherRectangle = new Rectangle({ x: 1, y: 1 }, { x: 5, y: 4 });
+      const actual = rectangle.isEqualTo(otherRectangle);
+      const expected = true;
+      assert.strictEqual(actual, expected);
+    });
+
+    it("should gives false if given rectangle is not in coordinate", () => {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 5, y: 4 });
+      const otherRectangle = new Rectangle({ x: 1, y: 1 }, { x: 4, y: 4 });
+      const actual = rectangle.isEqualTo(otherRectangle);
+      const expected = false;
+      assert.strictEqual(actual, expected);
+    });
+  });
 });
