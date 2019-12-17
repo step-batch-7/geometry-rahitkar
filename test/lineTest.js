@@ -209,17 +209,17 @@ describe("line", () => {
       assert.strictEqual(actual, expected);
     });
 
-    it("should give slope positive infinity for lines parallel to y-axis and having relative end point's ordinate greater then starting point's ordinate", () => {
+    it("should give slope infinity for lines parallel to y-axis and having relative end point's ordinate greater then starting point's ordinate", () => {
       const line = new Line({ x: 1, y: 2 }, { x: 1, y: 4 });
       const actual = line.slope;
       const expected = Infinity;
       assert.strictEqual(actual, expected);
     });
 
-    it("should give slope negative infinity for lines parallel to y-axis and having relative end point's ordinate lesser then starting point's ordinate", () => {
+    it("should give slope infinity for lines parallel to y-axis and having relative end point's ordinate lesser then starting point's ordinate", () => {
       const line = new Line({ x: 1, y: 4 }, { x: 1, y: 2 });
       const actual = line.slope;
-      const expected = -Infinity;
+      const expected = Infinity;
       assert.strictEqual(actual, expected);
     });
 
