@@ -29,8 +29,8 @@ class Point {
     );
   }
 
-  isOn(line) {
-    return line.hasPoint(this);
+  isOn(shape) {
+    return shape.hasPoint(this);
   }
 }
 

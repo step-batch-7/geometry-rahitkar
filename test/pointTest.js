@@ -1,6 +1,7 @@
 const assert = require("chai").assert;
 const Point = require("../src/point");
 const Line = require("../src/line");
+const Circle = require("../src/circle");
 
 describe("point", () => {
   describe("toString", () => {
@@ -90,19 +91,31 @@ describe("point", () => {
   });
 
   describe("isOn", () => {
-    it("should given true if point is on line", () => {
-      const line = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
-      const point = new Point(1, 2);
-      const actual = point.isOn(line);
-      const expected = true;
-      assert.strictEqual(actual, expected);
-    });
+    describe("line", () => {
+      it("should give true if point is on line", () => {
+        const line = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+        const point = new Point(1, 2);
+        const actual = point.isOn(line);
+        const expected = true;
+        assert.strictEqual(actual, expected);
+      });
 
-    it("should give false if a line is given but the point is not on the line", () => {
-      const line = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
-      const point = new Point(1, 1);
-      const actual = point.isOn(line);
-      const expected = false;
+      it("should give false if a line is given but the point is not on the line", () => {
+        const line = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+        const point = new Point(1, 1);
+        const actual = point.isOn(line);
+        const expected = false;
+        assert.strictEqual(actual, expected);
+      });
+    });
+  });
+
+  describe("circle", () => {
+    it("should give true if point is on line", () => {
+      const point = new Point(0, 5);
+      const circle = new Circle({ x: 0, y: 0 }, 5);
+      const actual = point.isOn(circle);
+      const expected = true;
       assert.strictEqual(actual, expected);
     });
   });

@@ -15,6 +15,8 @@ class Circle {
   }
 
   isEqualTo(other) {
+    if (!(other instanceof Circle)) return false;
+
     return (
       arePointsEqual(this.center, other.center) && this.radius === other.radius
     );
@@ -28,8 +30,10 @@ class Circle {
     return 2 * Math.PI * this.radius;
   }
 
-  hasPoint(point) {
-    return this.center.findDistanceTo(point) <= this.radius;
+  hasPoint(otherPoint) {
+    if (!(otherPoint instanceof Point)) return false;
+
+    return this.center.findDistanceTo(otherPoint) === this.radius;
   }
 }
 

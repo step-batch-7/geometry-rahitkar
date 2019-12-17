@@ -43,6 +43,13 @@ describe("circle", () => {
       const expected = false;
       assert.strictEqual(actual, expected);
     });
+
+    it("should  give false if given circle is not a circle object", () => {
+      const circle = new Circle({ x: 0, y: 0 }, 5);
+      const actual = circle.isEqualTo({ x: 0, y: 5 }, 5);
+      const expected = false;
+      assert.strictEqual(actual, expected);
+    });
   });
 
   describe("area", () => {
@@ -62,13 +69,35 @@ describe("circle", () => {
       assert.approximately(actual, expected, 0.1, "numbers are close by 0.1");
     });
   });
-  // c.hasPoint(p) // is true if circle c has point p on it
+
   describe("hasPoint", () => {
-    it("should give true if the given point is on circle", () => {
+    it("should give true if the given point is on the circle", () => {
+      const circle = new Circle({ x: 0, y: 0 }, 5);
+      const point = new Point(0, 5);
+      const actual = circle.hasPoint(point);
+      const expected = true;
+      assert.strictEqual(actual, expected);
+    });
+    it("should give false if the given point is inside the circle but on circle", () => {
       const circle = new Circle({ x: 0, y: 0 }, 5);
       const point = new Point(0, 0);
       const actual = circle.hasPoint(point);
-      const expected = true;
+      const expected = false;
+      assert.strictEqual(actual, expected);
+    });
+
+    it("should give false if the given point is out of circle", () => {
+      const circle = new Circle({ x: 0, y: 0 }, 5);
+      const point = new Point(10, 10);
+      const actual = circle.hasPoint(point);
+      const expected = false;
+      assert.strictEqual(actual, expected);
+    });
+
+    it("should give false if the given point is not a point object", () => {
+      const circle = new Circle({ x: 0, y: 0 }, 5);
+      const actual = circle.hasPoint(1, 2);
+      const expected = false;
       assert.strictEqual(actual, expected);
     });
   });
