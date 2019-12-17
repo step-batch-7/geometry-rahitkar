@@ -30,4 +30,27 @@ describe("Rectangle", () => {
       assert.strictEqual(actual, expected);
     });
   });
+
+  describe("perimeter", () => {
+    it("should give perimeter of a rectangle by gives points of diagonal", () => {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 5, y: 4 });
+      const actual = rectangle.perimeter;
+      const expected = 14;
+      assert.strictEqual(actual, expected);
+    });
+
+    it("should give the perimeter of a rectangle whose diagonal is parallel to x-axis", () => {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 5, y: 1 });
+      const actual = rectangle.perimeter;
+      const expected = 8;
+      assert.strictEqual(actual, expected);
+    });
+
+    it("should give the perimeter of a rectangle whose diagonal is parallel to y-axis", () => {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 1, y: 5 });
+      const actual = rectangle.perimeter;
+      const expected = 8;
+      assert.strictEqual(actual, expected);
+    });
+  });
 });

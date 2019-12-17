@@ -19,6 +19,13 @@ class Rectangle {
 
     return length * breath;
   }
+
+  get perimeter() {
+    const length = this.endA.findDistanceTo(this.endB);
+    const breath = this.endB.findDistanceTo(this.endC);
+
+    return 2 * (length + breath);
+  }
 }
 
 module.exports = Rectangle;
