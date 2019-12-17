@@ -101,4 +101,46 @@ describe("circle", () => {
       assert.strictEqual(actual, expected);
     });
   });
+
+  describe("moveTo", () => {
+    it("should give new circle at given point with same dimensions", () => {
+      const circle = new Circle({ x: 0, y: 0 }, 5);
+      const actual = circle.moveTo({ x: 1, y: 1 });
+      const expected = new Circle({ x: 1, y: 1 }, 5);
+      assert.deepStrictEqual(actual, expected);
+    });
+  });
+
+  describe("covers", () => {
+    it("should give true if given point is inside the circle", () => {
+      const circle = new Circle({ x: 0, y: 0 }, 5);
+      const point = new Point(1, 1);
+      const actual = circle.covers(point);
+      const expected = true;
+      assert.strictEqual(actual, expected);
+    });
+
+    it("should give false if given point is outside the circle", () => {
+      const circle = new Circle({ x: 0, y: 0 }, 5);
+      const point = new Point(0, 6);
+      const actual = circle.covers(point);
+      const expected = false;
+      assert.strictEqual(actual, expected);
+    });
+
+    it("should give true if given point is on circle circumference", () => {
+      const circle = new Circle({ x: 0, y: 0 }, 5);
+      const point = new Point(0, 5);
+      const actual = circle.covers(point);
+      const expected = true;
+      assert.strictEqual(actual, expected);
+    });
+
+    it("should give false if given point is not a Point object", () => {
+      const circle = new Circle({ x: 0, y: 0 }, 5);
+      const actual = circle.covers({ x: 0, y: 0 });
+      const expected = false;
+      assert.strictEqual(actual, expected);
+    });
+  });
 });
