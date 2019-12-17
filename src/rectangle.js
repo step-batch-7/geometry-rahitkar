@@ -1,5 +1,4 @@
 const Point = require("./point");
-console.log(Point.findDistanceTo);
 
 class Rectangle {
   constructor(endA, endC) {
