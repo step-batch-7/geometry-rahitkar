@@ -42,4 +42,13 @@ describe("circle", () => {
       assert.strictEqual(actual, expected);
     });
   });
+
+  describe("area", () => {
+    it("should give the area of a given circle object", () => {
+      const circle = new Circle({ x: 0, y: 0 }, 5);
+      const actual = circle.area;
+      const expected = 78.53;
+      assert.approximately(actual, expected, 0.1, "numbers are close by 0.1");
+    });
+  });
 });

@@ -19,6 +19,10 @@ class Circle {
       arePointsEqual(this.center, other.center) && this.radius === other.radius
     );
   }
+
+  get area() {
+    return Math.PI * this.radius ** 2;
+  }
 }
 
 module.exports = Circle;
