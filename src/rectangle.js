@@ -63,8 +63,12 @@ class Rectangle {
     return rectangle.some(line => line.hasPoint(point));
   }
 
-  // r.covers(p) // is true if point p is inside rectangle r
-  
+  covers(other) {
+    if (!(other instanceof Point)) return false;
+    const [xMin, xMax] = [this.endA.x, this.endC.x].sort((x, y) => x - y);
+    const [yMin, yMax] = [this.endA.y, this.endC.y].sort((x, y) => x - y);
+    return other.x > xMin && other.x < xMax && other.y > yMin && other.y < yMax;
+  }
 }
 
 module.exports = Rectangle;

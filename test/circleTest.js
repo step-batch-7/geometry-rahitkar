@@ -128,11 +128,11 @@ describe("circle", () => {
       assert.strictEqual(actual, expected);
     });
 
-    it("should give true if given point is on circle circumference", () => {
+    it("should give false if given point is on circle circumference", () => {
       const circle = new Circle({ x: 0, y: 0 }, 5);
       const point = new Point(0, 5);
       const actual = circle.covers(point);
-      const expected = true;
+      const expected = false;
       assert.strictEqual(actual, expected);
     });
 
