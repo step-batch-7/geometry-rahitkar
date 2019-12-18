@@ -12,7 +12,7 @@ const isColinear = (pointOne, pointTwo, pointThree) => {
 };
 
 const isInRange = (range, point) => {
-  [lowerLimit, upperLimit] = range.sort((num1, num2) => num1 - num2);
+  const [lowerLimit, upperLimit] = range.sort((num1, num2) => num1 - num2);
   return upperLimit >= point && lowerLimit <= point;
 };
 

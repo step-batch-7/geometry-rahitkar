@@ -11,6 +11,10 @@ getBreath = (point1, point2) => {
   return breath;
 };
 
+const isInRange = (range, point) => {
+  const [lowerLimit, upperLimit] = range.sort((x, y) => x - y);
+  return upperLimit >= point && lowerLimit <= point;
+};
 class Rectangle {
   constructor(endA, endC) {
     this.endA = new Point(endA.x, endA.y);
@@ -70,9 +74,11 @@ class Rectangle {
 
   covers(other) {
     if (!(other instanceof Point)) return false;
-    const [xMin, xMax] = [this.endA.x, this.endC.x].sort((x, y) => x - y);
-    const [yMin, yMax] = [this.endA.y, this.endC.y].sort((x, y) => x - y);
-    return other.x > xMin && other.x < xMax && other.y > yMin && other.y < yMax;
+
+    return (
+      isInRange([this.endA.x, this.endC.x], other.y) &&
+      isInRange([this.endA.y, this.endC.y], other.y)
+    );
   }
 }
 

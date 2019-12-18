@@ -117,7 +117,7 @@ describe("Rectangle", () => {
       assert.strictEqual(actual, expected);
     });
 
-    it("should give if given point is not inside the rectangle", () => {
+    it("should give false if given point is not inside the rectangle", () => {
       const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 5, y: 4 });
       const point = new Point(0, 0);
       const actual = rectangle.covers(point);
@@ -125,7 +125,7 @@ describe("Rectangle", () => {
       assert.strictEqual(actual, expected);
     });
 
-    it("should give if given point is not a point object", () => {
+    it("should give if false given point is not a point object", () => {
       const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 5, y: 4 });
       const actual = rectangle.covers({ x: 1, y: 1 });
       const expected = false;

@@ -118,5 +118,13 @@ describe("point", () => {
       const expected = true;
       assert.strictEqual(actual, expected);
     });
+
+    it("should give false if a circle is given but the point is not on the circle", () => {
+      const point = new Point(0, 6);
+      const circle = new Circle({ x: 0, y: 0 }, 5);
+      const actual = point.isOn(circle);
+      const expected = false;
+      assert.strictEqual(actual, expected);
+    });
   });
 });
