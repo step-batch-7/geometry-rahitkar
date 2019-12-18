@@ -47,7 +47,6 @@ class Rectangle {
     return diagonal.isEqualTo(otherDiagonal);
   }
 
-  // r.hasPoint(p) // is true if point in on the rectangle r
   hasPoint(point) {
     const endA = this.endA;
     const endB = new Point(this.endC.x, this.endA.y);
@@ -63,6 +62,9 @@ class Rectangle {
 
     return rectangle.some(line => line.hasPoint(point));
   }
+
+  // r.covers(p) // is true if point p is inside rectangle r
+  
 }
 
 module.exports = Rectangle;
