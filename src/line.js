@@ -101,11 +101,9 @@ class Line {
   }
 
   findPointFromStart(distance) {
-    const roundedDistance = Math.round(distance);
+    if (distance < 0 || distance > this.length) return null;
 
-    if (roundedDistance < 0 || roundedDistance > this.length) return null;
-
-    const distanceRatio = roundedDistance / this.length;
+    const distanceRatio = distance / this.length;
 
     if (isNaN(distanceRatio)) {
       return new Point(this.start.x, this.start.y);

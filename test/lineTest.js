@@ -339,7 +339,7 @@ describe("line", () => {
   });
 
   describe("findPointFromStart", () => {
-    it("should return a point for a given distance from the start of line", () => {
+    it("should give a point for a given distance from the start of line", () => {
       const line = new Line({ x: 1, y: 1 }, { x: 7, y: 9 });
       const actual = line.findPointFromStart(5);
       const expected = new Point(4, 5);
@@ -356,7 +356,7 @@ describe("line", () => {
     it("should give the point if given distance is not a integer", () => {
       const line = new Line({ x: 1, y: 1 }, { x: 7, y: 9 });
       const actual = line.findPointFromStart(2.4);
-      const expected = new Point(2.2, 2.6);
+      const expected = new Point(2.44, 2.92);
       assert.deepStrictEqual(actual, expected);
     });
 
