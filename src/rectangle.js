@@ -62,14 +62,14 @@ class Rectangle {
     const endC = this.endC;
     const endD = new Point(this.endA.x, this.endC.y);
 
-    const rectangle = [
+    const rectangleSides = [
       new Line(endA, endB),
       new Line(endB, endC),
       new Line(endC, endD),
       new Line(endD, endA)
     ];
 
-    return rectangle.some(line => line.hasPoint(point));
+    return rectangleSides.some(line => line.hasPoint(point));
   }
 
   covers(other) {
