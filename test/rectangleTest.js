@@ -1,4 +1,5 @@
 const assert = require("chai").assert;
+const Point = require("../src/point");
 const Rectangle = require("../src/rectangle");
 
 describe("Rectangle", () => {
@@ -78,6 +79,16 @@ describe("Rectangle", () => {
         endC: { x: 5, y: 4 }
       });
       const expected = false;
+      assert.strictEqual(actual, expected);
+    });
+  });
+
+  describe("hasPoint", () => {
+    it("should give true for given point which is on the rectangle", () => {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 5, y: 4 });
+      const point = new Point(1, 1);
+      const actual = rectangle.hasPoint(point);
+      const expected = true;
       assert.strictEqual(actual, expected);
     });
   });
