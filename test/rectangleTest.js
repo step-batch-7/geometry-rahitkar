@@ -70,5 +70,15 @@ describe("Rectangle", () => {
       const expected = false;
       assert.strictEqual(actual, expected);
     });
+
+    it("should give false if given rectangle is not a rectangle object", () => {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 5, y: 4 });
+      const actual = rectangle.isEqualTo({
+        endA: { x: 1, y: 1 },
+        endC: { x: 5, y: 4 }
+      });
+      const expected = false;
+      assert.strictEqual(actual, expected);
+    });
   });
 });

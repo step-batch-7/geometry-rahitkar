@@ -40,6 +40,8 @@ class Rectangle {
   }
 
   isEqualTo(other) {
+    if (!(other instanceof Rectangle)) return false;
+
     const diagonal = new Line(this.endA, this.endC);
     const otherDiagonal = new Line(other.endA, other.endC);
     return diagonal.isEqualTo(otherDiagonal);

@@ -16,6 +16,15 @@ const isInRange = (range, point) => {
   return upperLimit >= point && lowerLimit <= point;
 };
 
+const getPoint = (distanceRatio, line) => {
+  const xCoordinate =
+    (1 - distanceRatio) * line.start.x + line.end.x * distanceRatio;
+  const yCoordinate =
+    (1 - distanceRatio) * line.start.y + line.end.y * distanceRatio;
+
+  return new Point(xCoordinate, yCoordinate);
+};
+
 class Line {
   constructor(start, end) {
     this.start = new Point(start.x, start.y);
@@ -92,15 +101,17 @@ class Line {
   }
 
   findPointFromStart(distance) {
-    if (distance > this.length || !Number.isInteger(distance) || distance < 0)
-      return null;
-    const ratio = distance / this.length;
+    const roundedDistance = Math.round(distance);
 
-    const xCoordinate = (1 - ratio) * this.start.x + this.end.x * ratio;
-    const yCoordinate = (1 - ratio) * this.start.y + this.end.y * ratio;
+    if (roundedDistance < 0 || roundedDistance > this.length) return null;
 
-    const point = new Point(xCoordinate, yCoordinate);
-    return point;
+    const distanceRatio = roundedDistance / this.length;
+
+    if (isNaN(distanceRatio)) {
+      return new Point(this.start.x, this.start.y);
+    }
+
+    return getPoint(distanceRatio, this);
   }
 
   findPointFromEnd(distance) {

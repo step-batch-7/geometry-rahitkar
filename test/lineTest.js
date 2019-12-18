@@ -339,7 +339,7 @@ describe("line", () => {
   });
 
   describe("findPointFromStart", () => {
-    it("should return a point at a given distance of from the start of line", () => {
+    it("should return a point for a given distance from the start of line", () => {
       const line = new Line({ x: 1, y: 1 }, { x: 7, y: 9 });
       const actual = line.findPointFromStart(5);
       const expected = new Point(4, 5);
@@ -353,11 +353,11 @@ describe("line", () => {
       assert.strictEqual(actual, expected);
     });
 
-    it("should give null if given distance is not a integer", () => {
+    it("should give the point if given distance is not a integer", () => {
       const line = new Line({ x: 1, y: 1 }, { x: 7, y: 9 });
-      const actual = line.findPointFromStart(11.1435);
-      const expected = null;
-      assert.strictEqual(actual, expected);
+      const actual = line.findPointFromStart(2.4);
+      const expected = new Point(2.2, 2.6);
+      assert.deepStrictEqual(actual, expected);
     });
 
     it("should give null if given distance is negative", () => {
@@ -367,7 +367,7 @@ describe("line", () => {
       assert.strictEqual(actual, expected);
     });
 
-    it("should give last point if given distance is zero", () => {
+    it("should give first point if given distance is zero", () => {
       const line = new Line({ x: 1, y: 1 }, { x: 7, y: 9 });
       const actual = line.findPointFromStart(0);
       const expected = new Point(1, 1);
@@ -380,8 +380,21 @@ describe("line", () => {
       const expected = new Point(7, 9);
       assert.deepStrictEqual(actual, expected);
     });
-  });
 
+    it("should give null if given line has length zero", () => {
+      const line = new Line({ x: 1, y: 1 }, { x: 1, y: 1 });
+      const actual = line.findPointFromStart(10);
+      const expected = null;
+      assert.isNull(actual, expected);
+    });
+
+    it("should give the point when given distance and length zero", () => {
+      const line = new Line({ x: 1, y: 1 }, { x: 1, y: 1 });
+      const actual = line.findPointFromStart(0);
+      const expected = new Point(1, 1);
+      assert.deepStrictEqual(actual, expected);
+    });
+  });
   describe("findPointFromEnd", () => {
     it("should return a point at a given distance of from the end of line", () => {
       const line = new Line({ x: 1, y: 1 }, { x: 7, y: 9 });
