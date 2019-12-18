@@ -15,6 +15,11 @@ class Rectangle {
   constructor(endA, endC) {
     this.endA = new Point(endA.x, endA.y);
     this.endC = new Point(endC.x, endC.y);
+
+    Object.defineProperties(this, {
+      pointA: { writable: false },
+      pointC: { writable: false }
+    });
   }
 
   toString() {
